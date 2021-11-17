@@ -69,3 +69,10 @@ h4 {
 const TabsContainer = styled.div`
 margin-top: 10px;
 `;
+
+const FooterContainer = styled.div`
+
+background-color: white;
+height: 100vh;
+bottom:0;
+`;

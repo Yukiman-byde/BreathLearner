@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 import CategoryLists from './CategoryLists';
 import LaravelApi from '../API/LaravelApi';
+import Footer from './Footer';
 
 
 function Categories() {
@@ -11,7 +12,7 @@ function Categories() {
         LaravelApi.get('displaygroup').then((response) => {
             setCategories(response.data);
         })
-    })
+    },[])
 
 
     return (
@@ -25,7 +26,11 @@ function Categories() {
                <CategoryLists category={category}/>
              ))};
             </CategoryListsContainer>
+            <FooterContainer>
+            <Footer />
+            </FooterContainer>
         </CategoriesContainer>
+        
     )
 }
 
@@ -48,7 +53,7 @@ const CategoryListsContainer = styled.div`
 `;
 
 const CateogoryTitle = styled.div`
-position: relative;
+   position: relative;
    width: 100%;
    height: 300px;
    background-attachment: scroll;
@@ -65,6 +70,11 @@ position: relative;
        left: 50%;
        transform: translateY(-60%) translateX(-50%);
    }
+`;
+
+const FooterContainer = styled.div`
+ height: 40vh;
+ background: white;
 `;
 
 

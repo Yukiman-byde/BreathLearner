@@ -1,12 +1,24 @@
 import React,{ useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {Card, CardActionArea, CardMedia, CardContent, Typography} from '@material-ui/core';
+import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {setId} from '../../categorySlice';
 
 
 function CategoryLists({category}) {
+    const dispatch = useDispatch();
+
     return (
         <>
-            <CardContainer>
+            <CardContainer
+                style={{textDecoration: 'none',color: "#33EBFF"}}
+                component={Link}
+                to={`/lesson=${category.id}`}
+                onClick={()=>dispatch(setId({
+                categoryId: category.id
+                }))}
+                >
                 <CardActionArea>
                   <CardMedia 
                   component="img"
@@ -16,7 +28,7 @@ function CategoryLists({category}) {
                   src={category.picture}
                   />
                       <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
+                        <Typography style={{textDecoration: 'none',color: "#33EBFF"}} gutterBottom variant="h5">
                             {category.name}
                         </Typography>
                       </CardContent>

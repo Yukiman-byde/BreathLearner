@@ -37,6 +37,10 @@ class DisplayController extends Controller
         $end = 16;
         return Category::whereBetween('id', [$first, $end])->take(10)->get()->toJson();
     }
+    
+    public function displaygroupdetail($id){
+        return Category::find($id)->toJson();
+    }
 
     public function content(Request $request){
          $display = new Display;
@@ -95,5 +99,10 @@ class DisplayController extends Controller
        $quiz = Display::find(1);
        $quiz = $quiz->fetchquestions;
        return $quiz->toJson();
+    }
+    
+    public function fetchvideo($id){
+      $category = Category::find($id)->displays()->get();
+      return $category->toJson();
     }
 }

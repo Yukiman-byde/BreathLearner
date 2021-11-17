@@ -2,15 +2,20 @@ import React,{useState, useEffect} from 'react'
 import styled from 'styled-components'
 import {Button} from '@material-ui/core';
 import LaravelApi from '../API/LaravelApi';
-import {Card, CardActionArea} from '@material-ui/core';
-
-
+import LessonQuizzes from './LessonQuizzes';
 
 function LessonQuiz() {
     const [quizzes, setQuizzes] = useState([]);
-
+    const [open, setOpen] = useState(false);
+    let change = open?('もう一度とく'):('答えを見る');
+    
+    const handleOpen = () =>{
+        setOpen(!open);
+    }
+    
     useEffect(() => {
         LaravelApi.get('fetchquestion').then((response)=> {
+            console.log(response.data);
            setQuizzes(response.data);
         });
     },[]);
@@ -18,21 +23,14 @@ function LessonQuiz() {
 
     return (
         <LessonQuizContainer>
-            {quizzes.map((ans) => (
-            <p>{ans.question}</p>
+            {quizzes.map((quiz) => (
+             <LessonQuizzes quizData={quiz} open={open}/>
             ))}
-            <QuizzesContainer>
-                {quizzes.map((quiz) => (
-                <Card>
-                   <CardActionArea>
-                    {quiz.choice1}
-                   </CardActionArea>
-                </Card>
-                ))}
-            </QuizzesContainer>
             <Button
             variant={'contained'}
-            >答えを見る</Button>
+            onClick={handleOpen}
+            id="btn"
+            >{change}</Button>
         </LessonQuizContainer>
     )
 }
@@ -42,12 +40,5 @@ export default LessonQuiz;
 const LessonQuizContainer = styled.div`
 `;
 
-const QuizzesContainer = styled.div`
-
-.MuiCard-root {
-    width: 50%;
-    height: 50px;
-}
-`;
 
 

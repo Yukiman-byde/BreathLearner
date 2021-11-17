@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::get('/display', function(){
     return view('display');
-});
+})->middleware('auth');
 
 //privateへ送信
 Route::prefix('private')->group(function(){
@@ -32,6 +32,7 @@ Route::prefix('json')->group(function(){
     Route::get('shows', 'DisplayController@shows');
     Route::get('displays/{id}', 'DisplayController@displaydetail');
     Route::get('displaygroup', 'DisplayController@displaygroup');
+    Route::get('displaygroup/{id}', 'DisplayController@displaygroupdetail');
     Route::get('categories/{id}', 'DisplayController@categorydetail');
     Route::get('categories', 'DisplayController@category');
     Route::get('contents', 'DisplayController@content');
@@ -45,13 +46,22 @@ Route::prefix('json')->group(function(){
     Route::get('tips', 'DisplayController@tips');
     Route::post('tips', 'DisplayController@tips');
     Route::get('fetchquestion', 'DisplayController@fetchquestion');
+    Route::get('fetchvideo/{id}', 'DisplayController@fetchvideo');
 });
 
 
 
 Auth::routes();
+Route::get('/linelogin/{provider}', 'Auth\LineController@redirectToProvider')->name('linelogin');
+Route::get('/linelogin/{provider}/callback', 'Auth\LineController@handleProviderCallback');
+Route::get('/logout', 'Auth\LineController@logout')->name('logout');
 
 Route::get('home', 'HomeController@index')->name('home');
+// LINE メッセージ受信
+Route::post('/line/webhook', 'LineMessengerController@webhook')->name('line.webhook');
+ 
+// LINE メッセージ送信用
+Route::get('/line/message', 'LineMessengerController@message');
 
 // Route::get('line_login', 'LineLoginController@index')->name('line_login');
 
