@@ -71,7 +71,7 @@
         .btn {
                 background-color: #F2C969;
                 width: 110px;
-                margin: 30px;
+                margin: 20px;
                 color: #33EBFF;
                 height: 50px;
                 font-weight: bold;
@@ -92,6 +92,7 @@
         </style>
     </head>
     <body>
+      
         <div class="card">
             <div class="card-body">
                 <img class="image" alt=".../" src="https://newlanguageapp.s3.ap-northeast-1.amazonaws.com/S__34840579.jpg"/>
@@ -101,7 +102,8 @@
                             <a href="{{ url('/home') }}">Home</a>
                         @else
                             <a class="btn" role="button" href="{{ route('login') }}">Login</a>
-
+                            <a class="btn" role="button"  href="{{ route('linelogin', ['provider' => 'line']) }}">Line</a>
+                            
                             @if (Route::has('register'))
                             <a class="btn" role="button"  href="{{ route('register') }}">Register</a>
                             @endif

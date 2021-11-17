@@ -41,6 +41,7 @@ const SecondTopHeaderContainer = styled.div`
    height: 100px;
    padding-left: 100px;
    padding-right: 100px;
+   margin-top: 0;
 `;
 
 const HeaderLeft = styled.div`
@@ -66,7 +67,7 @@ const HeaderLeft = styled.div`
     h1 {
         margin-left: 20px;
         padding-left: 20px;
-    flex:0.1;
+        flex:0.1;
 
     }
 `;

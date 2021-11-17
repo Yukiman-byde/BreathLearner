@@ -6,6 +6,7 @@ import LessonVideo from './LessonVideo';
 
 function LessonPage({Id}) {
     return (
+    <>
         <LessonPageContainer>
           <LessonEssential>
             <LessonLeft>
@@ -17,12 +18,12 @@ function LessonPage({Id}) {
                 <LessonQuiz />
            </LessonRight>
          </LessonEssential>
+        </LessonPageContainer>
            <ProgressContainer>
            <h1>center</h1>
                 <LessonProgress />
            </ProgressContainer>
-
-        </LessonPageContainer>
+     </>
     )
 }
 export default LessonPage;
@@ -43,5 +44,7 @@ const LessonRight = styled.div`
      flex: 0.6;
 `;
 
-const ProgressContainer = styled.div``;
+const ProgressContainer = styled.div`
+  background-color: #fff;
+`;
 

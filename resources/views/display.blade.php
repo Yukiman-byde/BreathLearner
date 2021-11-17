@@ -13,6 +13,7 @@
         padding: 0;
     }
     </style>
+    <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
     <meta name='csrf-token' content='{{ csrf_token() }}'>
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
